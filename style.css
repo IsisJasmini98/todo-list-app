@@ -1,0 +1,439 @@
+:root {
+    --bg: #f6f3ef;
+    --surface: #ffffff;
+    --surface-soft: #fbf8f5;
+    --text: #2c2926;
+    --muted: #77706a;
+    --border: #e7e0d9;
+    --accent: #bd6f57;
+    --accent-dark: #9f5844;
+    --accent-soft: #f6e8e2;
+    --danger: #a9534b;
+    --shadow: 0 18px 45px rgba(60, 47, 39, 0.10);
+    --shadow-soft: 0 7px 20px rgba(60, 47, 39, 0.07);
+    --radius-lg: 22px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 72px 20px;
+    background:
+        radial-gradient(circle at top left, rgba(189, 111, 87, 0.10), transparent 34%),
+        linear-gradient(180deg, #faf8f5 0%, var(--bg) 100%);
+}
+
+.todo-app {
+    width: 100%;
+    max-width: 660px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(231, 224, 217, 0.95);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 36px;
+}
+
+.todo-app h2 {
+    display: flex;
+    align-items: center;
+    color: var(--text);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    margin-bottom: 26px;
+}
+
+.todo-app h2 img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-left: 10px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    margin-bottom: 26px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.row:focus-within {
+    border-color: rgba(189, 111, 87, 0.55);
+    box-shadow: 0 0 0 4px rgba(189, 111, 87, 0.10);
+}
+
+input {
+    font: inherit;
+}
+
+.row input {
+    min-width: 0;
+    flex: 1;
+    padding: 13px 14px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 15px;
+}
+
+.row input::placeholder {
+    color: #9a938d;
+}
+
+button {
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.row button,
+#save-btn {
+    padding: 13px 24px;
+    border-radius: 12px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 650;
+    box-shadow: 0 6px 14px rgba(189, 111, 87, 0.20);
+}
+
+.row button:hover,
+#save-btn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+.row button:active,
+#save-btn:active,
+#cancel-btn:active {
+    transform: translateY(0);
+}
+
+.row button:focus-visible,
+#save-btn:focus-visible,
+#cancel-btn:focus-visible,
+.contentBox input:focus-visible {
+    outline: 3px solid rgba(189, 111, 87, 0.20);
+    outline-offset: 2px;
+}
+
+ul {
+    display: grid;
+    gap: 10px;
+}
+
+ul li {
+    list-style: none;
+    position: relative;
+    min-height: 68px;
+    padding: 15px 104px 15px 54px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    color: var(--text);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+ul li:hover {
+    transform: translateY(-1px);
+    border-color: #d9cdc4;
+    box-shadow: 0 10px 24px rgba(60, 47, 39, 0.09);
+}
+
+ul li::before {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background-image: url(images/unchecked.png);
+    background-size: cover;
+    background-position: center;
+}
+
+ul li.checked {
+    background: #faf7f4;
+    border-color: #e8e0d9;
+}
+
+ul li.checked::before {
+    background-image: url(images/checked.png);
+}
+
+ul li.checked .task-title,
+ul li.checked .task-desc {
+    color: #9a938d;
+    text-decoration: line-through;
+}
+
+.task-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    width: 100%;
+    padding-right: 0;
+}
+
+.task-title {
+    font-size: 16px;
+    font-weight: 650;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.task-date {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.task-desc {
+    margin-top: 6px;
+    padding-right: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.45;
+    font-style: normal;
+    overflow-wrap: anywhere;
+}
+
+ul li .edit,
+ul li .delete {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    color: #716a64;
+    font-size: 20px;
+    line-height: 1;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+ul li .edit {
+    right: 54px;
+}
+
+ul li .delete {
+    right: 12px;
+}
+
+ul li .edit:hover {
+    background: #f1ece7;
+    color: var(--text);
+}
+
+ul li .delete:hover {
+    background: #f9e9e6;
+    color: var(--danger);
+}
+
+.modal {
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(40, 34, 30, 0.34);
+    backdrop-filter: blur(8px);
+}
+
+.show {
+    display: flex !important;
+}
+
+.contentBox {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 24px 60px rgba(44, 41, 38, 0.20);
+}
+
+.contentBox h2 {
+    margin-bottom: 20px;
+    color: var(--text);
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.contentBox input {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 12px 13px;
+    color: var(--text);
+    background: #fcfbfa;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contentBox input:focus {
+    border-color: rgba(189, 111, 87, 0.6);
+    box-shadow: 0 0 0 4px rgba(189, 111, 87, 0.09);
+}
+
+.contentBox .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.contentBox .buttons button {
+    padding: 11px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+#cancel-btn {
+    background: #f0ece8;
+    color: #5e5751;
+}
+
+#cancel-btn:hover {
+    background: #e5dfd9;
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 32px 14px;
+    }
+
+    .todo-app {
+        padding: 24px 18px;
+        border-radius: 18px;
+    }
+
+    .todo-app h2 {
+        font-size: 24px;
+    }
+
+    .row {
+        align-items: stretch;
+    }
+
+    .row button {
+        padding: 12px 18px;
+    }
+
+    ul li {
+        padding: 14px 96px 14px 50px;
+    }
+
+    ul li .edit {
+        right: 50px;
+    }
+
+    ul li .delete {
+        right: 10px;
+    }
+
+    .contentBox {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 430px) {
+    .row {
+        flex-direction: column;
+        padding: 8px;
+        background: transparent;
+        border: none;
+    }
+
+    .row:focus-within {
+        box-shadow: none;
+    }
+
+    .row input {
+        min-height: 48px;
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+    }
+
+    .row button {
+        width: 100%;
+    }
+
+    .contentBox .buttons {
+        flex-direction: column-reverse;
+    }
+
+    .contentBox .buttons button {
+        width: 100%;
+    }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.edit,
+.delete {
+    border: none;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+}

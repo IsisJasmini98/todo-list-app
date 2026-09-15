@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List app</title>
+
+    <!-- This connects the CSS sheet to HTML -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <h2>To-Do List <img src="images/icon.png" alt=""></h2>
+            <div class="row">
+                <label for="input-box" class="sr-only">New Task</label>
+                <input type="text" id="input-box" placeholder="Add your text">
+                <button onclick="addTask()">Add</button>
+            </div>
+            <ul id="list-container"></ul>
+        </div>
+    </div>
+
+    <div class="modal" id="editBox">
+        <div class="contentBox">
+            <h2>Edit Task</h2>
+            <label for="taskName">Task Name</label>
+            <input type="text" id="taskName">
+
+            <label for="taskDate">Due Date</label>
+            <input type="date" id="taskDate">
+
+            <label for="taskDescription">Description</label>
+            <input type="text" id="taskDescription" placeholder="Add an optional description">
+            <div class="buttons">
+                <button id="save-btn">Save</button>
+                <button id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- This connects the JS file to the HTML file -->
+    <script src="script.js"></script> 
+</body>
+</html>
