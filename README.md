@@ -4,6 +4,11 @@ A responsive task management application built with HTML, CSS, and JavaScript.
 
 This project was created to strengthen my front-end development skills and give me hands-on practice working with DOM manipulation, event handling, form validation, localStorage, responsive design, and accessibility.
 
+## Live Demo 
+
+View the live To-Do App 
+https://isisjasmini98.github.io/todo-list-app/
+
 ## Features
 
 - Add new tasks
