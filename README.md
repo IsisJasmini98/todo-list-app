@@ -9,6 +9,11 @@ This project was created to strengthen my front-end development skills and give 
 View the live To-Do App 
 https://isisjasmini98.github.io/todo-list-app/
 
+
+<img width="1414" height="828" alt="image" src="https://github.com/user-attachments/assets/de60d0b7-1c9b-4fbb-9a3f-25288a13d809" />
+
+
+
 ## Features
 
 - Add new tasks
